@@ -1,0 +1,53 @@
+<section class="relative isolate overflow-hidden bg-base-100 px-4 py-20 lg:py-28">
+  <div class="bg-grid absolute inset-0 -z-10"></div>
+  <div class="glow-blob -z-10 -top-10 right-1/4 size-72 bg-primary opacity-25"></div>
+
+  <div class="mx-auto max-w-4xl">
+    <!-- Header -->
+    <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary">
+      <fa-icon [icon]="faUser"></fa-icon>
+      Resumen
+    </p>
+    <h1 class="mt-3 text-4xl font-bold sm:text-5xl">
+      Lo que hago como <span class="text-gradient">Full Stack Developer</span>
+    </h1>
+
+    <!-- Bloque principal -->
+    <div class="ring-gradient card-lift mt-10 rounded-box border border-base-300/60 bg-base-200/40 backdrop-blur">
+      <div class="card-body">
+        <p class="text-lg leading-relaxed text-base-content/80">
+          Soy <span class="font-semibold text-base-content">Desarrollador Full Stack</span>. Adoro
+          optimizar plataformas y crear técnicas avanzadas de renderizado de componentes —o
+          cualquier cosa necesaria— para llegar a la solución. Gracias a mi experiencia pedagógica
+          también interpreto el lenguaje técnico al lenguaje de negocio, y puedo guiar y capacitar
+          al equipo de desarrollo en cada actividad dentro del proyecto.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="mt-14 mb-6 text-xs font-semibold uppercase tracking-wider text-base-content/40">
+      Cómo trabajo
+    </h2>
+
+    <div class="grid gap-5 sm:grid-cols-3">
+      @for (h of highlights; track h.title) {
+        <div
+          class="card-lift group rounded-box border border-base-300/60 bg-base-200/40 p-6 backdrop-blur">
+          <div
+            class="grid size-12 place-items-center rounded-field bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-content">
+            <fa-icon [icon]="h.icon" class="text-xl"></fa-icon>
+          </div>
+          <h3 class="mt-4 font-semibold">{{ h.title }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-base-content/65">{{ h.text }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="mt-12 flex justify-end">
+      <a routerLink="/skills" class="btn btn-primary gap-2">
+        Ver skills
+        <fa-icon [icon]="faArrowRight"></fa-icon>
+      </a>
+    </div>
+  </div>
+</section>

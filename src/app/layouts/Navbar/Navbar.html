@@ -1,29 +1,97 @@
-<div class="navbar bg-base-100 shadow-sm">
-  <div class="flex-1">
-    <a class="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div class="flex gap-2">
-    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
+<div
+  class="navbar sticky top-0 z-50 border-b border-base-300/60 bg-base-100/70 px-3 backdrop-blur-xl sm:px-6">
+  <!-- Marca + menú móvil -->
+  <div class="navbar-start">
+    <div class="dropdown lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <fa-icon [icon]="faBars"></fa-icon>
       </div>
       <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        tabindex="0"
+        class="menu menu-sm dropdown-content rounded-box z-50 mt-3 w-56 border border-base-300 bg-base-100/95 p-2 shadow-xl backdrop-blur">
+        @for (l of links; track l.route) {
+          <li>
+            <a
+              [routerLink]="l.route"
+              routerLinkActive="active font-semibold"
+              [routerLinkActiveOptions]="{ exact: l.route === '/' }"
+              >{{ l.label }}</a
+            >
+          </li>
+        }
       </ul>
     </div>
+    <a routerLink="/" class="btn btn-ghost gap-2 text-lg font-bold tracking-tight">
+      <span class="grid size-8 place-items-center rounded-lg bg-primary/15 text-primary">
+        <fa-icon [icon]="faCode"></fa-icon>
+      </span>
+      <!-- TODO: reemplazar con tu nombre real -->
+      <span class="text-gradient">Strechtech</span>
+    </a>
+  </div>
+
+  <!-- Nav links desktop (fuente única, sin duplicar) -->
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal gap-1 px-1 font-medium">
+      @for (l of links; track l.route) {
+        <li>
+          <a
+            [routerLink]="l.route"
+            routerLinkActive="bg-primary/10 text-primary font-semibold"
+            [routerLinkActiveOptions]="{ exact: l.route === '/' }"
+            class="rounded-field transition-colors"
+            >{{ l.label }}</a
+          >
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Búsqueda + tema + redes -->
+  <div class="navbar-end gap-1">
+    <div class="dropdown dropdown-end">
+      <label
+        class="input input-bordered input-sm flex w-36 items-center gap-2 rounded-field bg-base-200/60 md:w-60">
+        <fa-icon [icon]="faMagnifyingGlass" class="text-base-content/50"></fa-icon>
+        <input
+          type="text"
+          placeholder="Buscar…"
+          class="grow"
+          [value]="query()"
+          (input)="onInput($any($event.target).value)" />
+      </label>
+      @if (results().length) {
+        <ul
+          tabindex="0"
+          class="menu dropdown-content rounded-box z-50 mt-2 max-h-80 w-64 overflow-y-auto border border-base-300 bg-base-100/95 p-2 shadow-xl backdrop-blur">
+          @for (r of results(); track r.label + r.route) {
+            <li>
+              <button type="button" (click)="go(r)" class="justify-between">
+                {{ r.label }}
+                <span class="badge badge-ghost badge-sm">{{ r.route }}</span>
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <!-- Toggle de tema (noir ↔ lumen) -->
+    <label class="swap swap-rotate btn btn-ghost btn-circle">
+      <input type="checkbox" class="theme-controller" value="lumen" aria-label="Cambiar tema" />
+      <fa-icon [icon]="faMoon" class="swap-off text-lg"></fa-icon>
+      <fa-icon [icon]="faSun" class="swap-on text-lg"></fa-icon>
+    </label>
+
+    @for (s of socials; track s.label) {
+      <a
+        [href]="s.url"
+        [attr.aria-label]="s.label"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-ghost btn-circle hidden text-base-content/60 hover:text-primary sm:inline-flex">
+        <fa-icon [icon]="s.icon" class="text-lg"></fa-icon>
+      </a>
+    }
   </div>
 </div>

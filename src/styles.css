@@ -1,2 +1,255 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist/index.css";
 @plugin "daisyui";
+
+/* ──────────────────────────────────────────────────────────────
+   Design tokens
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Easing curvas refinadas para micro-interacciones */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Tema "noir" — dark sofisticado, acento violeta. Tema por defecto.
+   ────────────────────────────────────────────────────────────── */
+@plugin "daisyui/theme" {
+  name: "noir";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(17% 0.012 270);
+  --color-base-200: oklch(21% 0.014 270);
+  --color-base-300: oklch(26% 0.016 270);
+  --color-base-content: oklch(93% 0.008 270);
+
+  --color-primary: oklch(64% 0.19 285);
+  --color-primary-content: oklch(98% 0.01 285);
+  --color-secondary: oklch(72% 0.13 200);
+  --color-secondary-content: oklch(16% 0.02 200);
+  --color-accent: oklch(80% 0.13 85);
+  --color-accent-content: oklch(20% 0.03 85);
+  --color-neutral: oklch(30% 0.012 270);
+  --color-neutral-content: oklch(92% 0.008 270);
+
+  --color-info: oklch(72% 0.13 230);
+  --color-info-content: oklch(16% 0.02 230);
+  --color-success: oklch(74% 0.15 155);
+  --color-success-content: oklch(16% 0.02 155);
+  --color-warning: oklch(80% 0.14 80);
+  --color-warning-content: oklch(20% 0.03 80);
+  --color-error: oklch(68% 0.2 22);
+  --color-error-content: oklch(98% 0.01 22);
+
+  --radius-selector: 0.75rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Tema "lumen" — light limpio, mismo acento violeta.
+   ────────────────────────────────────────────────────────────── */
+@plugin "daisyui/theme" {
+  name: "lumen";
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(99% 0.002 270);
+  --color-base-200: oklch(96% 0.004 270);
+  --color-base-300: oklch(92% 0.006 270);
+  --color-base-content: oklch(24% 0.015 270);
+
+  --color-primary: oklch(56% 0.2 285);
+  --color-primary-content: oklch(99% 0.01 285);
+  --color-secondary: oklch(60% 0.13 200);
+  --color-secondary-content: oklch(99% 0.01 200);
+  --color-accent: oklch(70% 0.15 60);
+  --color-accent-content: oklch(99% 0.01 60);
+  --color-neutral: oklch(28% 0.015 270);
+  --color-neutral-content: oklch(98% 0.005 270);
+
+  --radius-selector: 0.75rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Base
+   ────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tipografia mas afinada para headings */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar discreto y acorde al tema */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-base-300) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-base-300);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-base-content) 30%, transparent);
+  background-clip: padding-box;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-primary) 35%, transparent);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Utilidades de marca
+   ────────────────────────────────────────────────────────────── */
+
+/* Texto con gradiente de marca */
+.text-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--color-primary) 0%,
+    color-mix(in oklch, var(--color-primary) 50%, var(--color-secondary)) 55%,
+    var(--color-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Rejilla sutil de fondo, con desvanecido radial */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--color-base-content) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-base-content) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
+}
+
+/* Halo de luz difuso (blob) para fondos */
+.glow-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Borde con gradiente para tarjetas premium */
+.ring-gradient {
+  position: relative;
+}
+.ring-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--color-primary) 60%, transparent),
+    transparent 45%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Iconos de stack: monocromo en reposo, color de marca + escala al hover */
+.stack-icon {
+  display: inline-flex;
+  color: color-mix(in oklch, var(--color-base-content) 55%, transparent);
+  cursor: pointer;
+  transition:
+    color 0.25s var(--ease-smooth),
+    transform 0.25s var(--ease-smooth);
+}
+.stack-icon:hover {
+  color: var(--brand);
+  transform: translateY(-2px) scale(1.18);
+}
+
+/* Tarjeta con elevacion al hover */
+.card-lift {
+  transition:
+    transform 0.4s var(--ease-smooth),
+    box-shadow 0.4s var(--ease-smooth),
+    border-color 0.4s var(--ease-smooth);
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -18px color-mix(in oklch, var(--color-primary) 45%, transparent);
+}
+
+/* Animacion de entrada reutilizable */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise-in 0.7s var(--ease-smooth) both;
+}
+
+/* Flotacion lenta para elementos decorativos */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-rise,
+  .animate-float {
+    animation: none;
+  }
+}

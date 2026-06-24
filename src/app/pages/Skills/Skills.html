@@ -1,0 +1,49 @@
+<section class="relative isolate overflow-hidden bg-base-100 px-4 py-20 lg:py-28">
+  <div class="bg-grid absolute inset-0 -z-10"></div>
+  <div class="glow-blob -z-10 top-10 -left-10 size-72 bg-secondary opacity-25"></div>
+
+  <div class="mx-auto max-w-5xl">
+    <!-- Header -->
+    <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary">
+      <fa-icon [icon]="faLayerGroup"></fa-icon>
+      Skills
+    </p>
+    <h1 class="mt-3 text-4xl font-bold sm:text-5xl">
+      Stack y <span class="text-gradient">tecnologías</span> por área
+    </h1>
+    <p class="mt-3 max-w-xl text-base-content/60">
+      Herramientas con las que diseño, construyo y optimizo de extremo a extremo.
+    </p>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      @for (g of groups; track g.category) {
+        <div
+          [id]="g.category.toLowerCase()"
+          class="ring-gradient card-lift group scroll-mt-24 rounded-box border border-base-300/60 bg-base-200/40 p-6 backdrop-blur">
+          <div class="flex items-center gap-3">
+            <span
+              class="grid size-11 place-items-center rounded-field bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-content">
+              <fa-icon [icon]="g.icon" class="text-lg"></fa-icon>
+            </span>
+            <h2 class="text-lg font-semibold">{{ g.category }}</h2>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2">
+            @for (item of g.items; track item) {
+              <span
+                class="rounded-full border border-base-300 bg-base-100/60 px-3 py-1 text-sm text-base-content/80 transition-colors hover:border-primary/50 hover:text-primary">
+                {{ item }}
+              </span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="mt-12 flex justify-end">
+      <a routerLink="/proyectos" class="btn btn-primary gap-2">
+        Ver proyectos
+        <fa-icon [icon]="faArrowRight"></fa-icon>
+      </a>
+    </div>
+  </div>
+</section>
