@@ -1,0 +1,70 @@
+name: Pre-Deploy Checks
+
+on:
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Configura Node.js 20
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      # Instala y configura pnpm (gestor de paquetes)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      
+      # Obtiene la ruta del cache de pnpm para acelerar instalaciones
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      
+      # Cache de dependencias (evita descargar node_modules cada vez)
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+      
+      # Instala las dependencias del proyecto
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      # Valida que el código siga los estándares (ESLint, Prettier, etc)
+      - name: Lint
+        run: pnpm run lint
+      
+      # Compila el proyecto (verifica que no haya errores de TypeScript)
+      - name: Build
+        run: pnpm run build
+      
+      # Detecta si accidentalmente committeaste secretos (API keys, passwords)
+      - name: Check for secrets (basic)
+        run: |
+          if grep -r "password\|secret\|api_key\|API_KEY" src/ --include="*.ts" --include="*.html" 2>/dev/null; then
+            echo "❌ Posibles secretos encontrados!"
+            exit 1
+          fi
+          echo "✅ No hay secretos expuestos"
+      
+      # Verifica que .env esté en .gitignore (seguridad)
+      - name: Check .gitignore
+        run: |
+          if git check-ignore -q .env; then
+            echo "✅ .env está en .gitignore"
+          else
+            echo "⚠️ .env debería estar en .gitignore"
+          fi
