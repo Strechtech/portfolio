@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: reemplazar dominio real
+Sitemap: https://strechtech.dev/sitemap.xml

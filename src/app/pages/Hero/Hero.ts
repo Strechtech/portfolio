@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -13,7 +13,7 @@ import { HERO_STACK, SOCIAL_LINKS } from '../../data/portfolio';
   selector: 'app-hero',
   imports: [RouterLink, FaIconComponent],
   templateUrl: './Hero.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class Hero {
   // Solo redes (sin email) para la fila social del hero.

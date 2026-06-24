@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -20,7 +20,6 @@ interface Highlight {
   selector: 'app-about',
   imports: [RouterLink, FaIconComponent],
   templateUrl: './About.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class About {
   protected readonly faUser = faUser;

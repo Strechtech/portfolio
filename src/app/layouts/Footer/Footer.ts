@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,6 @@ import { SOCIAL_LINKS } from '../../data/portfolio';
   selector: 'app-footer',
   imports: [RouterLink, FaIconComponent],
   templateUrl: './Footer.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
   protected readonly socials = SOCIAL_LINKS;

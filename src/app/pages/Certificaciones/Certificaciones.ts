@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,6 @@ import { CERT_ICON, CERTIFICATIONS, SOCIAL_LINKS } from '../../data/portfolio';
   selector: 'app-certificaciones',
   imports: [FaIconComponent],
   templateUrl: './Certificaciones.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Certificaciones {
   readonly certs = CERTIFICATIONS;

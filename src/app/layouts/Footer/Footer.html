@@ -30,9 +30,9 @@
 
       <!-- Navegación -->
       <nav class="flex flex-col gap-2">
-        <h3 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
+        <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
           Navegación
-        </h3>
+        </h2>
         @for (l of links; track l.route) {
           <a
             [routerLink]="l.route"
@@ -44,9 +44,9 @@
 
       <!-- Contacto -->
       <div class="flex flex-col gap-2">
-        <h3 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
+        <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
           Contacto
-        </h3>
+        </h2>
         @if (email) {
           <a
             [href]="email.url"

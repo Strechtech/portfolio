@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
@@ -14,7 +14,7 @@ import { SEARCH_INDEX, SearchEntry, SOCIAL_LINKS } from '../../data/portfolio';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, FaIconComponent],
   templateUrl: './Navbar.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class Navbar {
   protected readonly faBars = faBars;
