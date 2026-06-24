@@ -9,7 +9,7 @@
       <!-- Columna texto -->
       <div class="animate-rise">
         <span
-          class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200/60 px-3 py-1 text-xs font-medium text-base-content/70 backdrop-blur">
+          class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200/80 px-3 py-1 text-xs font-medium text-base-content/70">
           <fa-icon [icon]="faCircle" class="text-[0.5rem] text-success animate-pulse"></fa-icon>
           Disponible para nuevos proyectos
         </span>
@@ -59,15 +59,19 @@
       <!-- Columna avatar -->
       <div class="animate-rise relative mx-auto hidden lg:block">
         <div class="glow-blob top-6 left-6 size-72 bg-primary opacity-40"></div>
-        <div class="ring-gradient animate-float relative rounded-box bg-base-200/40 p-2 backdrop-blur">
+        <div class="ring-gradient animate-float relative rounded-box bg-base-200/70 p-2">
           <img
             src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
             alt="Retrato"
+            width="320"
+            height="400"
+            decoding="async"
+            fetchpriority="high"
             class="aspect-4/5 w-80 rounded-[0.8rem] object-cover" />
 
           <!-- Stack flotante: iconos devicon, color de marca + label al hover -->
           <div
-            class="absolute -bottom-5 -left-6 flex flex-wrap items-center gap-1 rounded-full border border-base-300 bg-base-100/90 px-3 py-2 shadow-lg backdrop-blur">
+            class="absolute -bottom-5 -left-6 flex flex-wrap items-center gap-1 rounded-full border border-base-300 bg-base-100 px-3 py-2 shadow-lg">
             @for (s of stack; track s.label) {
               <span class="tooltip" [attr.data-tip]="s.label">
                 <i class="stack-icon text-2xl {{ s.icon }}" [style.--brand]="s.color"></i>

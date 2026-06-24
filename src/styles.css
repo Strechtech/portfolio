@@ -163,9 +163,11 @@ h3 {
 .glow-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(72px);
+  /* blur menor = menos area de paint; contain aisla la capa para no invalidar vecinos */
+  filter: blur(48px);
   opacity: 0.5;
   pointer-events: none;
+  contain: strict;
 }
 
 /* Borde con gradiente para tarjetas premium */
@@ -242,6 +244,8 @@ h3 {
 }
 .animate-float {
   animation: float-soft 6s ease-in-out infinite;
+  /* promueve a capa GPU: la animacion infinita compone sin repintar */
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
