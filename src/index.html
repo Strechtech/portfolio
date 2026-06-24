@@ -6,46 +6,19 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <!-- SEO base (el TitleStrategy sobrescribe por ruta en runtime).
-       TODO: reemplazar https://strechtech.dev por el dominio real. -->
-  <meta name="description"
-    content="Strechtech — Full Stack Developer. Optimización de plataformas, técnicas avanzadas de renderizado y puente entre lo técnico y el negocio.">
+  
+  <!-- SEO base (dinámico por ruta en runtime) -->
+  <meta name="description" content="Full Stack Developer. Optimización de plataformas, técnicas de renderizado y puente entre lo técnico y el negocio.">
   <meta name="theme-color" content="#0a0a0f">
   <link rel="canonical" href="https://strechtech.dev/">
-
-  <!-- Open Graph / Twitter (defaults estáticos para scrapers sin JS) -->
+  
+  <!-- Open Graph / Twitter (defaults para scrapers) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Strechtech">
-  <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Strechtech · Full Stack Developer">
-  <meta property="og:description"
-    content="Optimización de plataformas, técnicas avanzadas de renderizado y puente entre lo técnico y el negocio.">
+  <meta property="og:description" content="Full Stack Developer. Optimización de plataformas, técnicas de renderizado y puente entre lo técnico y el negocio.">
   <meta property="og:url" content="https://strechtech.dev/">
-  <meta property="og:image" content="https://strechtech.dev/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Strechtech · Full Stack Developer">
-  <meta name="twitter:description"
-    content="Optimización de plataformas, técnicas avanzadas de renderizado y puente entre lo técnico y el negocio.">
-  <meta name="twitter:image" content="https://strechtech.dev/og-image.png">
-
-  <!-- JSON-LD Organization. TODO: dominio real + URLs sociales reales en sameAs. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Strechtech",
-    "url": "https://strechtech.dev",
-    "logo": "https://strechtech.dev/favicon.ico",
-    "description": "Full Stack Developer. Optimización de plataformas, técnicas avanzadas de renderizado y puente entre lo técnico y el negocio.",
-    "sameAs": [
-      "https://github.com/strechtech",
-      "https://www.linkedin.com/in/strechtech",
-      "https://x.com/strechtech"
-    ]
-  }
-  </script>
-  <!-- devicon: version fija (cacheable) + carga no bloqueante para no retrasar el render -->
+  
+  <!-- devicon -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
         media="print" onload="this.media='all'">

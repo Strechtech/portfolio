@@ -20,10 +20,9 @@ export interface SocialLink {
 
 // Redes. TODO: reemplazar urls dummy (#) por las reales.
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'GitHub', icon: faGithub, url: '#' },
-  { label: 'LinkedIn', icon: faLinkedin, url: '#' },
-  { label: 'X', icon: faXTwitter, url: '#' },
-  { label: 'Email', icon: faEnvelope, url: 'mailto:tu@email.com' },
+  { label: 'GitHub', icon: faGithub, url: 'https://github.com/Strechtech' },
+  { label: 'LinkedIn', icon: faLinkedin, url: 'https://www.linkedin.com/in/juan-pachacama-429a362b5' },
+  { label: 'Email', icon: faEnvelope, url: 'https://mail.google.com/mail/?view=cm&fs=1&to=jpachacamasimbana@gmail.com' },
 ];
 
 // Stack destacado del hero. `icon` = clase de la fuente devicon. `color` = hex de marca (hover).
