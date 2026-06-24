@@ -1,67 +1,76 @@
-<footer class="border-t border-base-300/60 bg-base-200/40">
-  <div class="mx-auto max-w-6xl px-4 py-14">
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
-      <!-- Marca -->
-      <div>
-        <a routerLink="/" class="flex items-center gap-2 text-lg font-bold tracking-tight">
-          <span class="grid size-8 place-items-center rounded-lg bg-primary/15 text-primary">
-            <fa-icon [icon]="faCode"></fa-icon>
-          </span>
-          <!-- TODO: reemplazar con tu nombre real -->
-          <span class="text-gradient">Strechtech</span>
-        </a>
-        <p class="mt-4 max-w-xs text-sm leading-relaxed text-base-content/60">
-          Full Stack Developer. Optimización de plataformas, técnicas de renderizado y puente
-          entre lo técnico y el negocio.
-        </p>
-        <div class="mt-5 flex items-center gap-1">
-          @for (s of socials; track s.label) {
+@defer (on viewport; when footerVisible()) {
+  <footer class="border-t border-base-300/60 bg-base-200/40">
+    <div class="mx-auto max-w-6xl px-4 py-14">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
+        <!-- Marca -->
+        <div>
+          <a routerLink="/" class="flex items-center gap-2 text-lg font-bold tracking-tight" aria-label="Ir a inicio">
+            <span class="grid size-8 place-items-center rounded-lg bg-primary/15 text-primary">
+              <fa-icon [icon]="faCode"></fa-icon>
+            </span>
+            <span class="text-gradient">Strechtech</span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-base-content/60">
+            Full Stack Developer. Optimización de plataformas, técnicas de renderizado y puente
+            entre lo técnico y el negocio.
+          </p>
+          <div class="mt-5 flex items-center gap-1">
+            @defer (on viewport) {
+              @for (s of socials; track s.label) {
+                <a
+                  [href]="s.url"
+                  [attr.aria-label]="s.label"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-ghost btn-circle btn-sm text-base-content/60 hover:text-primary">
+                  <fa-icon [icon]="s.icon"></fa-icon>
+                </a>
+              }
+            } @placeholder {
+              <div class="flex gap-1">
+                @for (s of socials; track s.label) {
+                  <div class="skeleton w-8 h-8 rounded-full"></div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Navegación -->
+        <nav class="flex flex-col gap-2" aria-label="Navegación del footer">
+          <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
+            Navegación
+          </h2>
+          @for (l of links; track l.route) {
+            <a [routerLink]="l.route" class="text-sm text-base-content/70 transition-colors hover:text-primary">
+              {{ l.label }}
+            </a>
+          }
+        </nav>
+
+        <!-- Contacto -->
+        <div class="flex flex-col gap-2">
+          <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
+            Contacto
+          </h2>
+          @if (email()) {
             <a
-              [href]="s.url"
-              [attr.aria-label]="s.label"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-ghost btn-circle btn-sm text-base-content/60 hover:text-primary">
-              <fa-icon [icon]="s.icon"></fa-icon>
+              [href]="email()!.url"
+              class="text-sm text-base-content/70 transition-colors hover:text-primary"
+              [attr.aria-label]="'Enviar email a ' + emailDisplay()">
+              {{ emailDisplay() }}
             </a>
           }
         </div>
       </div>
 
-      <!-- Navegación -->
-      <nav class="flex flex-col gap-2">
-        <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
-          Navegación
-        </h2>
-        @for (l of links; track l.route) {
-          <a
-            [routerLink]="l.route"
-            class="text-sm text-base-content/70 transition-colors hover:text-primary"
-            >{{ l.label }}</a
-          >
-        }
-      </nav>
-
-      <!-- Contacto -->
-      <div class="flex flex-col gap-2">
-        <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
-          Contacto
-        </h2>
-        @if (email) {
-          <a
-            [href]="email.url"
-            class="text-sm text-base-content/70 transition-colors hover:text-primary">
-            {{ email.url.replace('mailto:', '') }}
-          </a>
-        }
+      <div
+        class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-base-300/60 pt-6 text-xs text-base-content/50 sm:flex-row">
+        <p>© {{ year }} Strechtech. Todos los derechos reservados.</p>
+        <p>Construido con Angular · Tailwind · DaisyUI</p>
       </div>
     </div>
-
-    <div
-      class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-base-300/60 pt-6 text-xs text-base-content/50 sm:flex-row">
-      <!-- TODO: reemplazar con tu nombre real -->
-      <p>© {{ year }} Strechtech. Todos los derechos reservados.</p>
-      <p>Construido con Angular · Tailwind · DaisyUI</p>
-    </div>
-  </div>
-</footer>
+  </footer>
+} @placeholder {
+  <div class="border-t border-base-300/60 bg-base-200/40 h-32"></div>
+}
