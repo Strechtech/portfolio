@@ -4,7 +4,6 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    title: 'Inicio',
     data: {
       description:
         'Strechtech — Full Stack Developer. Optimizo plataformas, aplico técnicas avanzadas de renderizado y traduzco lo técnico al lenguaje de negocio.',
