@@ -91,27 +91,29 @@ export interface Project {
 
 // TODO: reemplazar con tus proyectos reales (nombre, descripción, tags, links).
 export const PROJECTS: Project[] = [
-  {
-    name: 'Plataforma de Renderizado',
+{
+    name: 'Geoportal Institucional - VLIRUOS',
     description:
-      'Optimización de renderizado de componentes y técnicas avanzadas para mejorar el rendimiento de la plataforma.',
-    tags: ['Angular', 'TypeScript', 'Tailwind CSS'],
-    url: '#',
-    repo: '#',
+      'Optimización de renderizado de componentes geoespaciales. Reducción de tiempo de carga de 5s → 1.2s mediante lazy loading, memoización y gestión eficiente de estados en Mapbox.',
+    tags: ['Angular', 'TypeScript', 'Tailwind CSS', 'Nest.js', 'Mapbox'],
   },
   {
     name: 'API REST + Autenticación',
     description:
-      'Backend con APIs REST, autenticación y consultas dinámicas integradas a base de datos.',
-    tags: ['Python', 'Flask', 'SQL Server'],
-    url: '#',
-    repo: '#',
+      'Backend robusto con autenticación JWT, consultas dinámicas, validación de entrada y control de acceso. Testing con Postman en escenarios multi-usuario.',
+    tags: ['MongoDB', 'Node.js', 'Docker', 'TypeScript', 'Nest.js'],
   },
   {
-    name: 'Smart Contract dApp',
-    description: 'Contratos inteligentes y almacenamiento descentralizado para una dApp en Ethereum.',
-    tags: ['Solidity', 'Web3.js', 'IPFS'],
-    repo: '#',
+    name: 'Smart Contract dApp Agrícola',
+    description:
+      'Plataforma Web3 para trazabilidad inmutable de cosechas en la Amazonía ecuatoriana. Contratos en Ethereum (testnet Sepolia), almacenamiento descentralizado en IPFS e interfaz amigable para usuarios sin experiencia en blockchain.',
+    tags: ['Solidity', 'Web3.js', 'IPFS', 'React', 'Vite', 'Tailwind CSS'],
+  },
+  {
+    name: 'Cacao_crops',
+    description:
+      'Plataforma institucional con agentes IA (OpenAI API) para análisis y síntesis de reportes de calidad de parcelas. Stack: React + Vite, Supabase, Cloudflare Workers, Python (análisis de datos a escala).',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'OpenAI', 'Supabase', 'Cloudflare', 'Python'],
   },
 ];
 
