@@ -1,14 +1,16 @@
 <nav
-  class="navbar sticky top-0 z-50 border-b border-base-300/60 bg-base-100/80 px-3 backdrop-blur sm:px-6">
+  class="navbar sticky top-0 z-50 border-b border-base-300/60 bg-base-100/80 px-2 backdrop-blur sm:px-6">
+  
   <!-- Marca + menú móvil (SIEMPRE VISIBLE) -->
-  <div class="navbar-start">
+  <div class="navbar-start gap-1 sm:gap-2">
+    <!-- Dropdown móvil -->
     <div class="dropdown lg:hidden">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle" aria-label="Abrir menú">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm" aria-label="Abrir menú">
         <fa-icon [icon]="faBars"></fa-icon>
       </div>
       <ul
         tabindex="0"
-        class="menu menu-sm dropdown-content rounded-box z-50 mt-3 w-56 border border-base-300 bg-base-100 p-2 shadow-xl">
+        class="menu menu-sm dropdown-content rounded-box z-50 mt-3 w-52 border border-base-300 bg-base-100 p-2 shadow-xl">
         @for (l of links; track l.route) {
           <li>
             <a
@@ -20,11 +22,16 @@
         }
       </ul>
     </div>
-    <a routerLink="/" class="btn btn-ghost gap-2 text-lg font-bold tracking-tight" aria-label="Ir a inicio">
-      <span class="grid size-8 place-items-center rounded-lg bg-primary/15 text-primary">
-        <fa-icon [icon]="faCode"></fa-icon>
+
+    <!-- Logo (responsive) -->
+    <a 
+      routerLink="/" 
+      class="btn btn-ghost btn-sm gap-1 px-2 sm:gap-2 sm:px-3 sm:text-lg font-bold tracking-tight"
+      aria-label="Ir a inicio">
+      <span class="grid size-6 sm:size-8 place-items-center rounded-lg bg-primary/15 text-primary">
+        <fa-icon [icon]="faCode" class="text-sm sm:text-base"></fa-icon>
       </span>
-      <span class="text-gradient">Strechtech</span>
+      <span class="hidden text-gradient sm:inline">Strechtech</span>
     </a>
   </div>
 
@@ -46,16 +53,17 @@
 
   <!-- Búsqueda + tema + redes (DEFER: carga al hacer scroll) -->
   @defer (on viewport) {
-    <div class="navbar-end gap-1">
-      <!-- Búsqueda -->
-      <div class="dropdown dropdown-end">
+    <div class="navbar-end gap-1 sm:gap-2">
+      
+      <!-- Búsqueda (oculta en mobile) -->
+      <div class="dropdown dropdown-end hidden sm:block">
         <label
-          class="input input-bordered input-sm flex w-36 items-center gap-2 rounded-field bg-base-200/60 md:w-60">
+          class="input input-bordered input-sm flex items-center gap-2 rounded-field bg-base-200/60 w-36 md:w-60">
           <fa-icon [icon]="faMagnifyingGlass" class="text-base-content/50"></fa-icon>
           <input
             type="text"
             placeholder="Buscar…"
-            class="grow"
+            class="grow text-sm"
             [value]="query()"
             (input)="onInput($any($event.target).value)"
             aria-label="Buscar contenido" />
@@ -66,9 +74,9 @@
             class="menu dropdown-content rounded-box z-50 mt-2 max-h-80 w-64 overflow-y-auto border border-base-300 bg-base-100 p-2 shadow-xl">
             @for (r of results(); track r.label + r.route) {
               <li>
-                <button type="button" (click)="go(r)" class="justify-between">
+                <button type="button" (click)="go(r)" class="justify-between text-sm">
                   {{ r.label }}
-                  <span class="badge badge-ghost badge-sm">{{ r.route }}</span>
+                  <span class="badge badge-ghost badge-xs">{{ r.route }}</span>
                 </button>
               </li>
             }
@@ -77,30 +85,29 @@
       </div>
 
       <!-- Toggle de tema -->
-      <label class="swap swap-rotate btn btn-ghost btn-circle" aria-label="Cambiar tema">
+      <label class="swap swap-rotate btn btn-ghost btn-circle btn-sm" aria-label="Cambiar tema">
         <input type="checkbox" class="theme-controller" value="lumen" />
-        <fa-icon [icon]="faMoon" class="swap-off text-lg"></fa-icon>
-        <fa-icon [icon]="faSun" class="swap-on text-lg"></fa-icon>
+        <fa-icon [icon]="faMoon" class="swap-off text-base"></fa-icon>
+        <fa-icon [icon]="faSun" class="swap-on text-base"></fa-icon>
       </label>
 
-      <!-- Sociales -->
+      <!-- Sociales (solo desktop + tablet) -->
       @for (s of socials; track s.label) {
         <a
           [href]="s.url"
           [attr.aria-label]="s.label"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn btn-ghost btn-circle hidden text-base-content/60 hover:text-primary sm:inline-flex"
+          class="btn btn-ghost btn-circle btn-sm hidden text-base-content/60 hover:text-primary sm:inline-flex"
         >
-          <fa-icon [icon]="s.icon" class="text-lg"></fa-icon>
+          <fa-icon [icon]="s.icon" class="text-base"></fa-icon>
         </a>
       }
     </div>
   } @placeholder {
-    <div class="navbar-end gap-1">
-      <div class="skeleton h-10 w-36 md:w-60 rounded-field"></div>
-      <div class="skeleton h-10 w-10 rounded-full hidden sm:block"></div>
-      <div class="skeleton h-10 w-10 rounded-full hidden sm:block"></div>
+    <div class="navbar-end gap-1 sm:gap-2">
+      <div class="skeleton h-10 w-10 rounded-lg hidden sm:block"></div>
+      <div class="skeleton h-10 w-10 rounded-full"></div>
     </div>
   }
 </nav>

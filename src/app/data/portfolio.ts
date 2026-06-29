@@ -124,11 +124,17 @@ export interface Certification {
   url?: string;
 }
 
-// TODO: reemplazar con tus certificaciones reales.
+
 export const CERTIFICATIONS: Certification[] = [
-  { name: 'Nombre de la certificación', issuer: 'Emisor', year: '2024', url: '#' },
-  { name: 'Nombre de la certificación', issuer: 'Emisor', year: '2023', url: '#' },
-  { name: 'Nombre de la certificación', issuer: 'Emisor', year: '2022', url: '#' },
+  { name: 'Angular de cero a experto', issuer: 'Udemy', year: '2025', url: 'https://www.udemy.com/certificate/UC-aaddb287-fea9-4095-abe7-cde64a8cbc89/' },
+  { name: 'Master en APIs RESTful con Node.js', issuer: 'Udemy', year: '2026', url: 'https://www.udemy.com/certificate/UC-2747e31d-8e8d-4b9f-a25b-e97fa9f6af16/' },
+  { name: 'Master en Automatización con NBN', issuer: 'Udemy', year: '2026', url: 'https://www.udemy.com/certificate/UC-3327abcf-11eb-4cbb-858b-b163e5a49801/' },
+  { name: 'Data Analytics with AI', issuer: 'Sololearn', year: '2025' },
+  { name: 'Generative AI in Practice', issuer: 'Sololearn', year: '2025'},
+  { name: 'Smart Contract y Blockchain', issuer: 'Udemy', year: '2024' },
+  { name: 'Databricks & Apache Spark para Big Data', issuer: 'Udemy', year: '2024', url: 'https://www.udemy.com/certificate/UC-3323faf5-de2f-44d9-9295-5e244eda590f/'},
+  { name: 'SQL Aplicado al Análisis de Datos', issuer: 'CEC-EPN', year: '2024'},
+  { name: 'Despliegue de Modelos ML', issuer: 'Sociedad Ecuatoriana de Estadística', year: '2023' },
 ];
 
 export const CERT_ICON = faAward;

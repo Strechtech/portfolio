@@ -48,20 +48,6 @@
           }
         </nav>
 
-        <!-- Contacto -->
-        <div class="flex flex-col gap-2">
-          <h2 class="mb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
-            Contacto
-          </h2>
-          @if (email()) {
-            <a
-              [href]="email()!.url"
-              class="text-sm text-base-content/70 transition-colors hover:text-primary"
-              [attr.aria-label]="'Enviar email a ' + emailDisplay()">
-              {{ emailDisplay() }}
-            </a>
-          }
-        </div>
       </div>
 
       <div
